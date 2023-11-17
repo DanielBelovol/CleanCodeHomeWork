@@ -4,11 +4,9 @@ import java.util.Scanner;
 
 public class Game {
     PrintClass printInfoClass = new PrintClass();
-    boolean boxAvailable = false;
-    byte winner = 0;
-    char[] board = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
-    boolean boxEmpty = false;
-    byte input;
+    byte winnerStatus = 0;
+    char[] gameBoard = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
+    boolean isBoxEmpty = false;
     public void startGame() {
         Scanner scan = new Scanner(System.in);
 
@@ -19,54 +17,50 @@ public class Game {
             writeWinnerText();
             playerMove(scan);
             if (checkWin('X')) {
-                winner = 1;
+                winnerStatus = 1;
                 continue; // Возврат из метода после выигрыша игрока.
             }
             if (isBoardAvailable()) {
                 computerMove();
                 drawStartBoard();
                 if (checkWin('O')) {
-                    winner = 2;
+                    winnerStatus = 2;
                     return; // Возврат из метода после выигрыша компьютера.
                 }
             }
         }
     }
     public void drawStartBoard() {
-        printInfoClass.print("\n\n " + board[0] + " | " + board[1] + " | " + board[2] + " ");
+        printInfoClass.print("\n\n " + gameBoard[0] + " | " + gameBoard[1] + " | " + gameBoard[2] + " ");
         printInfoClass.print("-----------");
-        printInfoClass.print(" " + board[3] + " | " + board[4] + " | " + board[5] + " ");
+        printInfoClass.print(" " + gameBoard[3] + " | " + gameBoard[4] + " | " + gameBoard[5] + " ");
         printInfoClass.print("-----------");
-        printInfoClass.print(" " + board[6] + " | " + board[7] + " | " + board[8] + " \n");
-        if (!boxEmpty) {
+        printInfoClass.print(" " + gameBoard[6] + " | " + gameBoard[7] + " | " + gameBoard[8] + " \n");
+        if (!isBoxEmpty) {
             for (int i = 0; i < 9; i++)
-                board[i] = ' ';
-            boxEmpty = true;
+                gameBoard[i] = ' ';
+            isBoxEmpty = true;
         }
     }//Метод рисует в консоли нашу доску
 
-    public boolean writeWinnerText() {
-        if (winner == 1) {
+    public void writeWinnerText() {
+        if (winnerStatus == 1) {
             printInfoClass.print("You won the game!");
-            return true;
-        } else if (winner == 2) {
+        } else if (winnerStatus == 2) {
             printInfoClass.print("You lost the game!");
-            return true;
-        } else if (winner == 3) {
+        } else if (winnerStatus == 3) {
             printInfoClass.print("It's a draw!");
-            return true;
         }
-        return false;
     }//Метод пишет выиграшный текст в зависимости от того кто выиграл
 
     public void playerMove(Scanner scan) {
         while (true) {
-            input = scan.nextByte();
+            byte input = scan.nextByte();
             if (input > 0 && input < 10) {
-                if (board[input - 1] == 'X' || board[input - 1] == 'O') {
+                if (gameBoard[input - 1] == 'X' || gameBoard[input - 1] == 'O') {
                     printInfoClass.print("That box is already in use. Enter another.");
                 } else {
-                    board[input - 1] = 'X';
+                    gameBoard[input - 1] = 'X';
                     break; // Break out of the loop once a valid move is made.
                 }
             } else {
@@ -79,8 +73,8 @@ public class Game {
         byte randomNumber;
         while (true) {
             randomNumber = (byte) (Math.random() * (9 - 1 + 1) + 1);
-            if (board[randomNumber - 1] != 'X' && board[randomNumber - 1] != 'O') {
-                board[randomNumber - 1] = 'O';
+            if (gameBoard[randomNumber - 1] != 'X' && gameBoard[randomNumber - 1] != 'O') {
+                gameBoard[randomNumber - 1] = 'O';
                 break;
             }
         }
@@ -90,28 +84,26 @@ public class Game {
     public boolean checkWin(char symbol) {
         // Проверка горизонтальных и вертикальных линий
         for (int i = 0; i < 3; i++) {
-            if ((board[i] == symbol && board[i + 3] == symbol && board[i + 6] == symbol) ||
-                    (board[3 * i] == symbol && board[3 * i + 1] == symbol && board[3 * i + 2] == symbol)) {
+            if ((gameBoard[i] == symbol && gameBoard[i + 3] == symbol && gameBoard[i + 6] == symbol) ||
+                    (gameBoard[3 * i] == symbol && gameBoard[3 * i + 1] == symbol && gameBoard[3 * i + 2] == symbol)) {
                 return true;
             }
         }
 
         // Проверка диагоналей
-        return (board[0] == symbol && board[4] == symbol && board[8] == symbol) ||
-                (board[2] == symbol && board[4] == symbol && board[6] == symbol);
+        return (gameBoard[0] == symbol && gameBoard[4] == symbol && gameBoard[8] == symbol) ||
+                (gameBoard[2] == symbol && gameBoard[4] == symbol && gameBoard[6] == symbol);
     }//Проверяет выиграл ли символ который мы передали
 
     public boolean isBoardAvailable() {
         for (int i = 0; i < 9; i++) {
-            if (board[i] != 'X' && board[i] != 'O') {
+            if (gameBoard[i] != 'X' && gameBoard[i] != 'O') {
                 return true; // Если хоть одна доступная ячейка найдена, вернуть true.
             }
         }
 
         // Если дошли сюда, значит, все ячейки заполнены.
-        winner = 3; // Устанавливаем ничью.
+        winnerStatus = 3; // Устанавливаем ничью.
         return false;
     }//если все поля заполнены то у нас ничья
 }
-
-
