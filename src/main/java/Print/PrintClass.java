@@ -1,7 +1,7 @@
-package GameLogic;
+package Print;
 
+import GameLogic.Game;
 import Print.PrintInfo;
-
 
 
 public class PrintClass implements PrintInfo {
@@ -10,3 +10,5 @@ public class PrintClass implements PrintInfo {
         System.out.println(text);
     }
 }
+
+
