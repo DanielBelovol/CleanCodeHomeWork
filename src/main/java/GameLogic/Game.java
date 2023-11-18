@@ -42,7 +42,6 @@ public class Game {
                     winnerStatus = 2;
                 }
             }
-            else continue;
         }
     }
 
@@ -69,9 +68,5 @@ public class Game {
         // Если дошли сюда, значит, все ячейки заполнены.
         winnerStatus = 3; // Устанавливаем ничью.
         return false;
-    }
-
-    public void setWinnerStatus(byte winnerStatus) {
-        this.winnerStatus = winnerStatus;
     }
 }
