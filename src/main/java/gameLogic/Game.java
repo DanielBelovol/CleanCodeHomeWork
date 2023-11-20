@@ -1,26 +1,28 @@
-package GameLogic;
+package gameLogic;
 
-import GameLogic.Move.ComputerMove;
-import GameLogic.Move.UserMove;
-import GameLogic.Win.PrintWinnerText;
-import GameLogic.Win.WinChecker;
+import gameLogic.move.Move;
+import gameLogic.win.PrintWinnerText;
+import gameLogic.win.WinChecker;
 import Print.PrintClass;
 
 import java.util.Scanner;
 
 public class Game {
-    UserMove userMove = new UserMove();
-    ComputerMove computerMove = new ComputerMove();
-
+    Move move = new Move();
     PrintClass printClass = new PrintClass();
     PrintWinnerText printWinnerText = new PrintWinnerText();
-
     WinChecker winChecker = new WinChecker();
 
 
     public byte winnerStatus = 0;
     char[] gameBoard = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
     public boolean isBoxEmpty = false;
+
+    public Game(byte winnerStatus,char[] gameBoard,boolean isBoxEmpty){
+        this.winnerStatus = winnerStatus;
+        this.gameBoard = gameBoard;
+        this.isBoxEmpty = isBoxEmpty;
+    }
 
     public void startGame() {
         Scanner scan = new Scanner(System.in);
@@ -30,13 +32,13 @@ public class Game {
         while (true) {
             darwBoard();
             printWinnerText.writeWinnerText(winnerStatus);
-            userMove.playerMove(scan, gameBoard);
+            move.playerMove(scan, gameBoard);
             if (winChecker.checkWin('X', gameBoard)) {
                 winnerStatus = 1;
                 continue; // Возврат из метода после выигрыша игрока.
             }
             if (isBoardAvailable()) {
-                computerMove.computerMove(gameBoard);
+                move.computerMove(gameBoard);
                 darwBoard();
                 if (winChecker.checkWin('O', gameBoard)) {
                     winnerStatus = 2;

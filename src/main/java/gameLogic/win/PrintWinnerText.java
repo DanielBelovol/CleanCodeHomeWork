@@ -1,4 +1,4 @@
-package GameLogic.Win;
+package gameLogic.win;
 
 import Print.PrintClass;
 

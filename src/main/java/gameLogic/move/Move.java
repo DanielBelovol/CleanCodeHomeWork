@@ -1,11 +1,21 @@
-package GameLogic.Move;
+package gameLogic.move;
 
 import Print.PrintClass;
 
 import java.util.Scanner;
 
-public class UserMove {
+public class Move {
     PrintClass printClass = new PrintClass();
+    public void computerMove(char[] gameBoard){
+        byte randomNumber;
+        while (true) {
+            randomNumber = (byte) (Math.random() * (9 - 1 + 1) + 1);
+            if (gameBoard[randomNumber - 1] != 'X' && gameBoard[randomNumber - 1] != 'O') {
+                gameBoard[randomNumber - 1] = 'O';
+                break;
+            }
+        }
+    }
     public void playerMove(Scanner scan, char[] gameBoard) {
         while (true) {
             byte input = scan.nextByte();

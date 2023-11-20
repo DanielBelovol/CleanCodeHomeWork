@@ -1,4 +1,4 @@
-package GameLogic.Win;
+package gameLogic.win;
 
 public class WinChecker {
     public boolean checkWin(char symbol,char[] gameBoard) {
