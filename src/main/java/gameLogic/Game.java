@@ -14,9 +14,9 @@ public class Game {
     WinChecker winChecker = new WinChecker();
 
 
-    public byte winnerStatus = 0;
-    char[] gameBoard = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
-    public boolean isBoxEmpty = false;
+    public byte winnerStatus;
+    char[] gameBoard;
+    public boolean isBoxEmpty;
 
     public Game(byte winnerStatus,char[] gameBoard,boolean isBoxEmpty){
         this.winnerStatus = winnerStatus;
