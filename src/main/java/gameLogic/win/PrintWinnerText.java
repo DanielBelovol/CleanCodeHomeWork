@@ -1,6 +1,6 @@
 package gameLogic.win;
 
-import Print.PrintClass;
+import print.PrintClass;
 
 public class PrintWinnerText {
     PrintClass printClass = new PrintClass();

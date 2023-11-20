@@ -3,7 +3,7 @@ package gameLogic;
 import gameLogic.move.Move;
 import gameLogic.win.PrintWinnerText;
 import gameLogic.win.WinChecker;
-import Print.PrintClass;
+import print.PrintClass;
 
 import java.util.Scanner;
 

@@ -1,6 +1,6 @@
 package gameLogic.move;
 
-import Print.PrintClass;
+import print.PrintClass;
 
 import java.util.Scanner;
 
