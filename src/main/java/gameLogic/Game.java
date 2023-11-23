@@ -3,22 +3,20 @@ package gameLogic;
 import gameLogic.move.Move;
 import gameLogic.win.PrintWinnerText;
 import gameLogic.win.WinChecker;
-import print.PrintClass;
 
 import java.util.Scanner;
 
 public class Game {
-    Move move = new Move();
-    PrintClass printClass = new PrintClass();
-    PrintWinnerText printWinnerText = new PrintWinnerText();
-    WinChecker winChecker = new WinChecker();
+    private Move move = new Move();
+    private PrintWinnerText printWinnerText = new PrintWinnerText();
+    private WinChecker winChecker = new WinChecker();
 
 
     public byte winnerStatus;
     char[] gameBoard;
     public boolean isBoxEmpty;
 
-    public Game(byte winnerStatus,char[] gameBoard,boolean isBoxEmpty){
+    public Game(byte winnerStatus, char[] gameBoard, boolean isBoxEmpty) {
         this.winnerStatus = winnerStatus;
         this.gameBoard = gameBoard;
         this.isBoxEmpty = isBoxEmpty;
@@ -27,7 +25,7 @@ public class Game {
     public void startGame() {
         Scanner scan = new Scanner(System.in);
 
-        printClass.print("Enter box number to select. Enjoy!\n");
+        System.out.println("Enter box number to select. Enjoy!\n");
 
         while (true) {
             darwBoard();
@@ -48,11 +46,11 @@ public class Game {
     }
 
     public void darwBoard() {//Метод рисует в консоли нашу доску
-        printClass.print("\n\n " + gameBoard[0] + " | " + gameBoard[1] + " | " + gameBoard[2] + " ");
-        printClass.print("-----------");
-        printClass.print(" " + gameBoard[3] + " | " + gameBoard[4] + " | " + gameBoard[5] + " ");
-        printClass.print("-----------");
-        printClass.print(" " + gameBoard[6] + " | " + gameBoard[7] + " | " + gameBoard[8] + " \n");
+        System.out.println("\n\n " + gameBoard[0] + " | " + gameBoard[1] + " | " + gameBoard[2] + " ");
+        System.out.println("-----------");
+        System.out.println(" " + gameBoard[3] + " | " + gameBoard[4] + " | " + gameBoard[5] + " ");
+        System.out.println("-----------");
+        System.out.println(" " + gameBoard[6] + " | " + gameBoard[7] + " | " + gameBoard[8] + " \n");
         if (!isBoxEmpty) {
             for (int i = 0; i < 9; i++) {
                 gameBoard[i] = ' ';
