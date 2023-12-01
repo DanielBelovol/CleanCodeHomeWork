@@ -12,9 +12,9 @@ public class Game {
     private WinChecker winChecker = new WinChecker();
 
 
-    public byte winnerStatus;
-    char[] gameBoard;
-    public boolean isBoxEmpty;
+    private byte winnerStatus;
+    private char[] gameBoard;
+    private boolean isBoxEmpty;
 
     public Game(byte winnerStatus, char[] gameBoard, boolean isBoxEmpty) {
         this.winnerStatus = winnerStatus;

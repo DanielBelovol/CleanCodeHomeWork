@@ -1,11 +1,10 @@
 package gameLogic.move;
 
-import print.PrintClass;
+
 
 import java.util.Scanner;
 
 public class Move {
-    PrintClass printClass = new PrintClass();
     public void computerMove(char[] gameBoard){
         byte randomNumber;
         while (true) {
@@ -21,13 +20,13 @@ public class Move {
             byte input = scan.nextByte();
             if (input > 0 && input < 10) {
                 if (gameBoard[input - 1] == 'X' || gameBoard[input - 1] == 'O') {
-                    printClass.print("That box is already in use. Enter another.");
+                    System.out.println("That box is already in use. Enter another.");
                 } else {
                     gameBoard[input - 1] = 'X';
                     break; // Break out of the loop once a valid move is made.
                 }
             } else {
-                printClass.print("Invalid input. Enter again.");
+                System.out.println("Invalid input. Enter again.");
             }
         }
     }//Метод принимает ход, проверяет не занято ли поле и ходит
